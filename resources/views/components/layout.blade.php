@@ -18,28 +18,28 @@
     </div>
 
     <div class="space-x-6 font-bold">
-        <a href="/">Jobs</a>
-        <a href="#">Careers</a>
-        <a href="#">Salaries</a>
-        <a href="/companies">Companies</a>
+        <x-nav-link :active="request()->is('/')" href="/">Jobs</x-nav-link>
+        <x-nav-link :active="request()->is('#')" href="#">Careers</x-nav-link>
+        <x-nav-link :active="request()->is('#')" href="#">Salaries</x-nav-link>
+        <x-nav-link :active="request()->is('companies')" href="/companies">Companies</x-nav-link>
     </div>
 
     @auth()
         <div class="space-x-6 font-bold flex">
-            <a href="/jobs/create">Post a Job</a>
+            <x-nav-link :active="request()->is()" href="/jobs/create">Post a Job</x-nav-link>
 
             <form method="POST" action="/logout">
                 @csrf
                 @method('DELETE')
-                <button>Log Out</button>
+                <x-nav-link type="button">Log Out</x-nav-link>
             </form>
         </div>
     @endauth
 
     @guest()
         <div class="space-x-6 font-bold">
-            <a href="/registration">Sign Up</a>
-            <a href="/login">Log In</a>
+            <x-nav-link :active="request()->is()" href="/registration">Sign Up</x-nav-link>
+            <x-nav-link :active="request()->is()" href="/login">Log In</x-nav-link>
         </div>
     @endguest
 </nav>
